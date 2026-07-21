@@ -122,12 +122,12 @@
         .btn-back:hover {
             background-color: #95a5a6;
         }
-        .btn-download {
+        .btn-continue {
             background-color: #27ae60;
             color: #fff;
             flex: 2;
         }
-        .btn-download:hover {
+        .btn-continue:hover {
             background-color: #2ecc71;
         }
     </style>
@@ -192,7 +192,8 @@
     <!-- Actions Interface Blocks -->
     <div class="btn-group">
         <a href="index.html" class="btn btn-back">Edit Form</a>
-        <button id="downloadTxtBtn" class="btn btn-download">Download Backup .TXT</button>
+        <!-- Swapped out .TXT download element layout directly for your primary Continue action path -->
+        <a href="Submit.html" class="btn btn-continue">Continue</a>
     </div>
 </div>
 
@@ -236,33 +237,6 @@ if (!storedData) {
     safePopulate('viewEduDates', data.eduDates);
     safePopulate('viewEduSchool', data.eduSchool);
     safePopulate('viewEduBullet', data.eduBullet);
-
-    // 3. Setup client side manual fallback download action button
-    const downloadBtn = document.getElementById('downloadTxtBtn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', function() {
-            let txtContent = `GLOBAL BPO SOLUTIONS - APPLICANT CV DATA\n`;
-            txtContent += `==============================================\n\n`;
-            txtContent += `FULL NAME: ${data.fullName || ''}\n`;
-            txtContent += `CONTACT:   ${data.contactLine1 || ''} | ${data.contactLine2 || ''}\n\n`;
-            txtContent += `PROFESSIONAL SUMMARY:\n${data.summary || ''}\n\n`;
-            txtContent += `CORE SKILLS:\n${data.skills || ''}\n\n`;
-            txtContent += `WORK EXPERIENCE 1:\n${data.job1Title || ''} (${data.job1Dates || ''})\n${data.job1Company || ''}\n- ${data.job1Bullet1 || ''}\n- ${data.job1Bullet2 || ''}\n\n`;
-            txtContent += `WORK EXPERIENCE 2:\n${data.job2Title || ''} (${data.job2Dates || ''})\n${data.job2Company || ''}\n- ${data.job2Bullet1 || ''}\n\n`;
-            txtContent += `EDUCATION:\n${data.eduDegree || ''} (${data.eduDates || ''})\n${data.eduSchool || ''}\n- ${data.eduBullet || ''}\n`;
-
-            const blob = new Blob([txtContent], { type: 'text/plain' });
-            const link = document.createElement('a');
-            const cleanFileName = data.fullName ? data.fullName.replace(/\s+/g, '_') : 'Applicant';
-            
-            link.href = URL.createObjectURL(blob);
-            link.download = `${cleanFileName}_CV_Data.txt`; 
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        });
-    }
 }
 </script>
 
