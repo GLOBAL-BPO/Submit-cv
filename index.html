@@ -223,82 +223,154 @@
 <div class="container">
     <div class="top-banner">Global BPO Solutions • Career Opportunity</div>
 
-    <form id="cvForm" onsubmit="event.preventDefault(); alert('Application details logged successfully!');">
-        <header>
-            <h1><input type="text" placeholder="YOUR FULL NAME"></h1>
+    <form id="cvForm">
+              <header>
+            <!-- Added id="fullName" here -->
+            <h1><input type="text" id="fullName" placeholder="YOUR FULL NAME" required></h1>
             <div class="contact-info">
-                <input type="text" placeholder="📍 City, Country | 📞 Phone Number (with country code)">
-                <input type="text" placeholder="✉️ Email Address | 🔗 LinkedIn Profile URL">
+                <!-- Added id="contactLine1" here -->
+                <input type="text" id="contactLine1" placeholder="📍 City, Country | 📞 Phone Number (with country code)" required>
+                <!-- Added id="contactLine2" here -->
+                <input type="text" id="contactLine2" placeholder="✉️ Email Address | 🔗 LinkedIn Profile URL" required>
             </div>
         </header>
 
-        <section>
-            <h2>Professional Summary</h2>
-            <textarea rows="3" placeholder="Write a short summary (3-4 sentences) outlining your core professional experience, specific strengths, and your career objectives for this opportunity..."></textarea>
-        </section>
 
-        <section>
-            <h2>Core Skills</h2>
-            <textarea rows="4" placeholder="• Professional Competencies: Skill A, Skill B, Skill C&#10;• Technical Tools: Software 1, Platform 2, Tool 3&#10;• Operational / Soft Skills: Trait 1, Trait 2"></textarea>
-        </section>
+      <section>
+    <h2>Professional Summary</h2>
+    <textarea id="summary" rows="3" placeholder="Write a short summary..." required></textarea>
+</section>
 
-        <section>
-            <h2>Professional Experience</h2>
-            
-            <div class="job">
-                <div class="grid-row">
-                    <input type="text" placeholder="Most Recent Job Title / Role">
-                    <input type="text" placeholder="Month YYYY – Present">
-                </div>
-                <div class="sub-text">
-                    <input type="text" placeholder="Company Name, City, Country">
-                </div>
-                <ul>
-                    <li><textarea rows="2" placeholder="Key Achievement 1: Start with an active verb (e.g., Managed, Developed, Increased) and include a metrics-based result if possible."></textarea></li>
-                    <li><textarea rows="2" placeholder="Key Achievement 2: Describe an administrative task, team initiative, or problem-solving outcome you executed."></textarea></li>
-                </ul>
-            </div>
+<section>
+    <h2>Core Skills</h2>
+    <textarea id="skills" rows="4" placeholder="• Professional Competencies..."></textarea>
+</section>
 
-            <div class="job" style="margin-top: 20px;">
-                <div class="grid-row">
-                    <input type="text" placeholder="Previous Job Title / Role">
-                    <input type="text" placeholder="Month YYYY – Month YYYY">
-                </div>
-                <div class="sub-text">
-                    <input type="text" placeholder="Company Name, City, Country">
-                </div>
-                <ul>
-                    <li><textarea rows="2" placeholder="Describe your primary responsibility or a notable project delivery milestones achieved in this role."></textarea></li>
-                </ul>
-            </div>
-        </section>
 
-        <section>
-            <h2>Education</h2>
-            <div class="education-item">
-                <div class="grid-row">
-                    <input type="text" placeholder="Degree, Major, or Field of Study (e.g., B.Sc. in Economics)">
-                    <input type="text" placeholder="Graduation Year (e.g., Nov 2021)">
-                </div>
-                <div class="sub-text">
-                    <input type="text" placeholder="University, College, or Institution Name, Location">
-                </div>
-                <ul>
-                    <li><textarea rows="1" placeholder="Academic honors, awards, relevant certifications, or distinct coursework completed."></textarea></li>
-                </ul>
-            </div>
-        </section>
+      <section>
+    <h2>Professional Experience</h2>
+    
+    <!-- Job 1 -->
+    <div class="job">
+        <div class="grid-row">
+            <input type="text" id="job1Title" placeholder="Most Recent Job Title / Role" required>
+            <input type="text" id="job1Dates" placeholder="Month YYYY – Present" required>
+        </div>
+        <div class="sub-text">
+            <input type="text" id="job1Company" placeholder="Company Name, City, Country" required>
+        </div>
+        <ul>
+            <li><textarea id="job1Bullet1" rows="2" placeholder="Key Achievement 1..." required></textarea></li>
+            <li><textarea id="job1Bullet2" rows="2" placeholder="Key Achievement 2..." required></textarea></li>
+        </ul>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="job" style="margin-top: 20px;">
+        <div class="grid-row">
+            <input type="text" id="job2Title" placeholder="Previous Job Title / Role">
+            <input type="text" id="job2Dates" placeholder="Month YYYY – Month YYYY">
+        </div>
+        <div class="sub-text">
+            <input type="text" id="job2Company" placeholder="Company Name, City, Country">
+        </div>
+        <ul>
+            <li><textarea id="job2Bullet1" rows="2" placeholder="Describe your primary responsibility..."></textarea></li>
+        </ul>
+    </div>
+</section>
+
+
+       <section>
+    <h2>Education</h2>
+    <div class="education-item">
+        <div class="grid-row">
+            <input type="text" id="eduDegree" placeholder="Degree, Major..." required>
+            <input type="text" id="eduDates" placeholder="Graduation Year..." required>
+        </div>
+        <div class="sub-text">
+            <input type="text" id="eduSchool" placeholder="University..." required>
+        </div>
+        <ul>
+            <li><textarea id="eduBullet" rows="1" placeholder="Academic honors..."></textarea></li>
+        </ul>
+    </div>
+</section>
+
 
         <footer>
             I hereby certify that the information provided above is true, complete, and accurate.
         </footer>
 
         <!-- Submit Button Element Container with External Link -->
+             <!-- Replace your current footer button container with this -->
         <div class="submit-btn-container">
-            <a href="Submit.html" target="_blank" style="text-decoration: none;">
-                <button type="button" class="submit-application-btn">Submit Application</button>
-            </a>
+            <button type="submit" class="submit-application-btn">Submit Application</button>
         </div>
+    </form>
+</div>
+
+<script>
+document.getElementById('cvForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Helper utility to safely grab field values without crashing
+    const getValue = (id, fallback = '') => {
+        const element = document.getElementById(id);
+        return element ? element.value : fallback;
+    };
+
+    // 1. Gather all inputs from your newly-fixed form fields
+    const cvData = {
+        fullName: getValue('fullName'),
+        contactLine1: getValue('contactLine1'),
+        contactLine2: getValue('contactLine2'),
+        summary: getValue('summary'),
+        skills: getValue('skills'),
+        
+        job1Title: getValue('job1Title'),
+        job1Dates: getValue('job1Dates'),
+        job1Company: getValue('job1Company'),
+        job1Bullet1: getValue('job1Bullet1'),
+        job1Bullet2: getValue('job1Bullet2'),
+
+        job2Title: getValue('job2Title', 'N/A'),
+        job2Dates: getValue('job2Dates', 'N/A'),
+        job2Company: getValue('job2Company', 'N/A'),
+        job2Bullet1: getValue('job2Bullet1', 'N/A'),
+
+        eduDegree: getValue('eduDegree'),
+        eduDates: getValue('eduDates'),
+        eduSchool: getValue('eduSchool'),
+        eduBullet: getValue('eduBullet', 'N/A')
+    };
+
+    // 2. Immediate Save to phone storage so 'input.html' renders perfectly
+    localStorage.setItem('applicantCVData', JSON.stringify(cvData));
+
+    // 3. Fire-and-forget network stream to your web server text logger
+    // NOTE: When testing in TrebEdit preview, this background fetch might fail locally,
+    // but the '.catch' block ensures your screen still swaps instantly without getting stuck!
+    fetch('txt.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cvData)
+    })
+    .then(response => {
+        window.location.assign('input.html');
+    })
+    .catch(error => {
+        // Safe bypass tracking for phone preview software environments
+        window.location.assign('input.html');
+    });
+});
+</script>
+
+
+
+
     </form>
 </div>
 
