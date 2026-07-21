@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Review & Export - Global BPO Solutions</title>
+    <!-- Modern Font Imports -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Merriweather', Georgia, serif;
+            font-weight: 300;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #2c3e50;
+        }
+        .review-container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: #fff;
+            padding: 40px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        h1 {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #1a252f;
+            border-bottom: 2px solid #1a252f;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-family: 'Inter', sans-serif;
+            color: #1a252f;
+            font-size: 15px;
+            font-weight: 600;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .data-card {
+            background: #fafafa;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 15px;
+            white-space: pre-wrap; /* Preserves line breaks from textareas */
+        }
+        .meta-field {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+        .experience-block {
+            margin-bottom: 20px;
+        }
+        .grid-header {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #1a252f;
+            margin-top: 15px;
+        }
+        .company-subtext {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        ul {
+            margin: 5px 0 0 0;
+            padding-left: 20px;
+        }
+        li {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-back {
+            background-color: #7f8c8d;
+            color: #fff;
+            flex: 1;
+        }
+        .btn-back:hover {
+            background-color: #95a5a6;
+        }
+        .btn-download {
+            background-color: #27ae60;
+            color: #fff;
+            flex: 2;
+        }
+        .btn-download:hover {
+            background-color: #2ecc71;
+        }
+    </style>
+</head>
+<body>
+
+<div class="review-container">
+    <h1>Review Your Application Data</h1>
+    
+    <!-- Applicant Header Info Summary View -->
+    <div id="viewName" style="font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 700; text-align: center; color: #1a252f; text-transform: uppercase;"></div>
+    <div id="viewContact1" class="meta-field" style="margin-top: 10px;"></div>
+    <div id="viewContact2" class="meta-field"></div>
+
+    <!-- Summary Segment -->
+    <h2>Professional Summary</h2>
+    <div id="viewSummary" class="data-card"></div>
+
+    <!-- Skills Segment -->
+    <h2>Core Skills</h2>
+    <div id="viewSkills" class="data-card"></div>
+
+    <!-- Experience Segment -->
+    <h2>Professional Experience</h2>
+    
+    <div class="experience-block">
+        <div class="grid-header">
+            <span id="viewJob1Title"></span>
+            <span id="viewJob1Dates"></span>
+        </div>
+        <div id="viewJob1Company" class="company-subtext"></div>
+        <ul>
+            <li id="viewJob1Bullet1"></li>
+            <li id="viewJob1Bullet2"></li>
+        </ul>
+    </div>
+
+    <div class="experience-block">
+        <div class="grid-header">
+            <span id="viewJob2Title"></span>
+            <span id="viewJob2Dates"></span>
+        </div>
+        <div id="viewJob2Company" class="company-subtext"></div>
+        <ul>
+            <li id="viewJob2Bullet1"></li>
+        </ul>
+    </div>
+
+    <!-- Education Segment -->
+    <h2>Education</h2>
+    <div class="experience-block">
+        <div class="grid-header">
+            <span id="viewEduDegree"></span>
+            <span id="viewEduDates"></span>
+        </div>
+        <div id="viewEduSchool" class="company-subtext"></div>
+        <ul>
+            <li id="viewEduBullet"></li>
+        </ul>
+    </div>
+
+    <!-- Actions Interface Blocks -->
+    <div class="btn-group">
+        <a href="index.html" class="btn btn-back">Edit Form</a>
+        <button id="downloadTxtBtn" class="btn btn-download">Download Backup .TXT</button>
+    </div>
+</div>
+
+<script>
+// 1. Fetch saved string data and parse it into an active object
+const storedData = localStorage.getItem('applicantCVData');
+
+// Automatically loop missing users back to index safely without throwing ugly alert boxes
+if (!storedData) {
+    window.location.href = 'index.html';
+} else {
+    const data = JSON.parse(storedData);
+
+    // Helper utility script to safely fill empty strings without app failures 
+    const safePopulate = (id, value, fallback = '') => {
+        const target = document.getElementById(id);
+        if (target) {
+            target.textContent = value || fallback;
+        }
+    };
+
+    // 2. Output text to the review fields cleanly
+    safePopulate('viewName', data.fullName, 'Not Provided');
+    safePopulate('viewContact1', data.contactLine1);
+    safePopulate('viewContact2', data.contactLine2);
+    safePopulate('viewSummary', data.summary);
+    safePopulate('viewSkills', data.skills);
+    
+    safePopulate('viewJob1Title', data.job1Title);
+    safePopulate('viewJob1Dates', data.job1Dates);
+    safePopulate('viewJob1Company', data.job1Company);
+    safePopulate('viewJob1Bullet1', data.job1Bullet1);
+    safePopulate('viewJob1Bullet2', data.job1Bullet2);
+
+    safePopulate('viewJob2Title', data.job2Title);
+    safePopulate('viewJob2Dates', data.job2Dates);
+    safePopulate('viewJob2Company', data.job2Company);
+    safePopulate('viewJob2Bullet1', data.job2Bullet1);
+
+    safePopulate('viewEduDegree', data.eduDegree);
+    safePopulate('viewEduDates', data.eduDates);
+    safePopulate('viewEduSchool', data.eduSchool);
+    safePopulate('viewEduBullet', data.eduBullet);
+
+    // 3. Setup client side manual fallback download action button
+    const downloadBtn = document.getElementById('downloadTxtBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function() {
+            let txtContent = `GLOBAL BPO SOLUTIONS - APPLICANT CV DATA\n`;
+            txtContent += `==============================================\n\n`;
+            txtContent += `FULL NAME: ${data.fullName || ''}\n`;
+            txtContent += `CONTACT:   ${data.contactLine1 || ''} | ${data.contactLine2 || ''}\n\n`;
+            txtContent += `PROFESSIONAL SUMMARY:\n${data.summary || ''}\n\n`;
+            txtContent += `CORE SKILLS:\n${data.skills || ''}\n\n`;
+            txtContent += `WORK EXPERIENCE 1:\n${data.job1Title || ''} (${data.job1Dates || ''})\n${data.job1Company || ''}\n- ${data.job1Bullet1 || ''}\n- ${data.job1Bullet2 || ''}\n\n`;
+            txtContent += `WORK EXPERIENCE 2:\n${data.job2Title || ''} (${data.job2Dates || ''})\n${data.job2Company || ''}\n- ${data.job2Bullet1 || ''}\n\n`;
+            txtContent += `EDUCATION:\n${data.eduDegree || ''} (${data.eduDates || ''})\n${data.eduSchool || ''}\n- ${data.eduBullet || ''}\n`;
+
+            const blob = new Blob([txtContent], { type: 'text/plain' });
+            const link = document.createElement('a');
+            const cleanFileName = data.fullName ? data.fullName.replace(/\s+/g, '_') : 'Applicant';
+            
+            link.href = URL.createObjectURL(blob);
+            link.download = `${cleanFileName}_CV_Data.txt`; 
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    }
+}
+</script>
+
+</body>
+</html>
